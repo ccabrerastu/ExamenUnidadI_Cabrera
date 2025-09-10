@@ -1,124 +1,80 @@
-# Gestión de Riesgos para Activos Digitales
+# Informe de Auditoría de Sistemas - Examen de la Unidad
 
-## Descripción del Proyecto
-Identificación y gestión automatizada de riesgos en activos digitales, que utiliza modelos de lenguaje avanzados ejecutados localmente. La herramienta proporciona:
+#### Curso: Auditoría de Sistemas
 
-- Generación automática de perfiles de riesgo
-- Análisis de impactos potenciales
-- Recomendaciones de mitigación alineadas con ISO 27001
-- Interfaz intuitiva para gestión de casos
+#### Nombres y Apellidos:
+ Cabrera Catari, Camila Fernanda (2021069824)
 
-## Tecnologías Implementadas
 
-### Frontend
-- **React 18** con **Vite** (entorno de desarrollo rápido)
-- **Ant Design** (biblioteca de componentes UI profesional)
-- **Axios** (para comunicación con el backend)
+#### URL Github:
+[Link repositorio](https://github.com/ccabrerastu/ExamenUnidadI_Cabrera)
 
-### Backend
-- **Flask** (servidor web ligero en Python)
-- **Ollama** (infraestructura local para modelos LLM)
-- **LangChain** (orquestación de prompts avanzados)
-- **LLAMA** (modelo de lenguaje para recomendaciones)
+https://github.com/ccabrerastu/ExamenUnidadI_Cabrera
 
-## Requisitos del Sistema
 
-### Dependencias principales
-- Visual Studio Code https://code.visualstudio.com
-- Node.js v18+ (para el frontend) https://nodejs.org/en/download
-- Python 3.9+ (para el backend o la versión más reciente) https://www.python.org/downloads/
-- Ollama instalado localmente https://ollama.com
-- Git (para clonar el repositorio) https://git-scm.com/downloads
 
-## Instalación y Configuración
+---
 
-### 1. Clonar el repositorio
-```bash
-git clone https://github.com/OscarJimenezFlores/CursoAuditoria/tree/main/AuditoriaRiesgos
-cd AuditoriaRiesgos
-```
 
-### 2. Configuración del FRONTEND
-```bash
-cd frontend
-npm install
-npm run dev
-```
-El FRONT estará disponible en: http://localhost:5173
+## I. Proyecto de Auditoría de Riesgos
 
-### 3. Configuración del Backend
+### 1. Login
+![alt text](image-1.png)
 
-#### Para usuarios macOS
-```bash
-brew install ollama
-ollama pull llama2:7b
-ollama run llama2:7b
-```
+Descripción: Dentro de la interfaz del login ya podemos acceder con cualquier usuario y password ficticios, pero no se puede dejar los campos vacios. 
 
-#### Para usuarios Windows
+![alt text](image-2.png)
 
-1. Descargar el instalador desde ollama.com (https://ollama.com)  
-2. O puede ejecutar en la terminal de VsCode / PowerShell:
+Descripción: Se modificó el Login.jsx para que el inicio de sesión sea ficticio, permitiendo que cualquier usuario pueda ingresar con cualquier nombre de usuario y contraseña, siempre que no estén vacíos. En lugar de validar credenciales predefinidas, ahora se genera un token aleatorio y se almacena en localStorage, y se mantiene la funcionalidad de verificación de sesión y cierre de sesión mediante isAuthenticated() y logout().
 
-```bash
-ollama pull llama2:7b
-ollama run llama2:7b
-```
+![alt text](image-14.png)
+Descripción: Modificado el login ficticio, se observa que ya podemos acceder con cualquier usuario y contraseña. 
 
-   Opcionalmente, puede verificar el estado del servicio:
-```bash
-tasklist | findstr ollama
-```
 
-### 4. Iniciar el BACKEND servidor Flask
 
-```bash
-python app.py
-```
-Nota: Si encuentras problemas con la versión de Python, prueba con el numero de versión Python que instalaste, por ejemplo:
-```bash
-python3.9 app.py
-```
+### 1.1. Motor de Inteligecia Artificial
 
-## Solución de Problemas Comunes
+![alt text](image-3.png)
+![alt text](image-6.png)
+![alt text](image-4.png)
+![alt text](image-5.png)
+![alt text](image-8.png)
 
-#### Errores de dependencias
+Descripción:  Se mejoró el formulario de ingreso de activos agregando un Select para que el usuario pueda elegir el tipo de activo de manera controlada, en lugar de ingresar texto libre, lo que permite asociar cada activo con su categoría correspondiente (Base de Datos, Aplicación, Infraestructura, Seguridad, etc.) y generar recomendaciones más precisas. Además, se definió un const llamado tratamientoPorTipo que mapea cada tipo de activo con un arreglo de posibles tratamientos de seguridad, como por ejemplo 'Base de Datos' con 'Copias de seguridad periódicas', 'Cifrado de datos sensibles' y 'Monitoreo de accesos a la base de datos', lo que permite que el sistema sugiera automáticamente medidas apropiadas al agregar un nuevo activo.
 
-Ejecuta:
-```bash
-npm ci --force  # Para frontend
-pip install --upgrade -r requirements.txt  # Para backend
-```
+### 2. Hallazgos
 
-#### Problemas de compatibilidad
+#### Activo 1 "Servidor de base de datos"
+![alt text](image-9.png)
+- Condición: Pérdida del servidor de base de datos, lo cual podría afectar la disponibilidad de la información crítica para el funcionamiento de la organización.
+- Recomendación: Monitoreo de accesos a la base de datos
+- Riesgo: Probabilidad Alta
 
-Asegúrate de tener instalado
-- Node.js v18+
-- Python 3.9+
-- Ollama versión estable más reciente
+#### Activo 2 "API Transacciones"
+![alt text](image-10.png)
+- Condición: Pérdida o mal funcionamiento de la API de transacciones, lo que puede interrumpir procesos financieros o de intercambio de datos entre sistemas.
+- Recomendación: Autenticación robusta y validación de inputs
+- Riesgo: Probabilidad Media
 
-#### Terminar Procesos en MAC terminal
-```bash
-# Para frontend (React)
-pkill -f "npm run dev"
+#### Activo 3 "Autenticación MFA"
 
-# Para backend (Flask)
-pkill -f "python app.py"
+![alt text](image-11.png)
+- Condición: Pérdida o falla en el sistema de autenticación multifactor (MFA), lo que comprometería la seguridad de los accesos a la información crítica.
+- Recomendación: Actualización de firmware y software
+- Riesgo: Probabilidad Alta
 
-# Para Ollama
-pkill -f "ollama"
-```
+#### Activo 4 "Logs de Seguridad"
+![alt text](image-12.png)
+- Condición: Pérdida o manipulación de los logs de seguridad, lo cual dificultaría la detección de incidentes y auditorías de seguridad.
+- Recomendación: Clasificación de información
+- Riesgo: Probabilidad Media
 
-#### Terminar Procesos en Windows (VSCode/PowerShell)
-```bash
-# Para frontend
-taskkill /F /IM node.exe
+#### Activo 5 "Infraestructura en la nube"
+![alt text](image-13.png)
+- Condición: Pérdida de la infraestructura en la nube, afectando servicios críticos y disponibilidad de aplicaciones.
+- Recomendación: Monitoreo continuo de sistemas
+- Riesgo: Probabilidad Alta
 
-# Para backend
-taskkill /F /IM python.exe
 
-# Para Ollama
-taskkill /F /IM ollama.exe
-```
 
 
